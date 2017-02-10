@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Matt C. Moore</title>
+	<script src='jQuery_v3.1.1.js'></script>
+	<script src='skrollr.min.js'></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<script>
+	$(document).ready(function(){
+		
+		// open popup
+		$('.portfolio-thumbnail img').click(function(){
+			$('#nav , #content').css('display','none');	
+			$(this).parents('li').children('div.portfolio-details').clone().appendTo('#popup');
+			$('.portfolio-details').css({'display':'block'});
+			var popupListTop = 	(((( $('#popup div p').height()+$('#popup-top').height() )/$(window).height())*100).toFixed(2)).toString()+'%';
+			$('#popup ul').css({'position':'absolute','top':popupListTop});
+			$('#popup li').css({'height':'auto','background-color':'#000000'});		
+			if($(this).parents('li').children('div.portfolio-details').children()[1].childElementCount == 1){
+				$('#popup ul').css({'bottom':0});
+				$('#popup li').css({'height':'100%','padding':0});
+			}
+			$('html, body').animate({scrollTop: 0}, 1); 
+		});
+		//close popup 
+		$('#close-popup').click(function(){
+			$('#nav , #content').css('display','block');
+			$('#popup .portfolio-details').remove();	
+			$('.portfolio-details').css('display','none');
+			$('html, body').animate({scrollTop: $('#work-carousel').offset().top - $('#nav').height()}, 1);
+		});
+		//nav
+		$('#nav button').click(function(){
+			if($(this).attr('value') == 'closed'){
+				$('#nav ul').css('right',0);
+				$('#content').css({'left':'-60%'}); //why overflow hidden?
+				$(this).attr('value','open');
+			}
+			else if($(this).attr('value') == 'open'){
+				$('#nav ul').css('right','-60%');
+				$('#content').css({'left':'0'});
+				$(this).attr('value','closed');
+			}
+		});
+		$(window).resize(function(){
+			if($(window).width()>800){
+				$('#nav ul').css('right',0);
+				$('#content').css({'left':0}); 
+				$('#nav button').attr('value','closed');
+			}
+			if($(window).width()<800 && $('#nav button').attr('value')=='closed'){
+				$('#nav ul').css('right','-60%');
+				$('#content').css({'left':'0'});
+			}
+		});
+/*		
+		//open mobile nav | why overflow:hidden ??
+		$('#nav button').click(function(){
+			if($(this).attr('value') == 'closed'){
+				$('#nav ul').css('right',0);
+				$('#content').css({'left':'-60%','overflow':'hidden'});
+				$(this).text('CLOSE').attr('value','open');
+				console.log($(this).attr('value'));
+			}
+		});
+		//close mobile nav | why overflow:hidden ??
+		 $('#nav button').click(function(){
+			if($(this).attr('value') == 'open'){
+				$('#nav ul').css('right','-60%');
+				$('#content').css({'left':'0','overflow':'hidden'});
+				$(this).text('OPEN').attr('value','closed');
+			}
+		});
+*/
+	});
+</script>
+	<div id='nav'>
+		<ul>
+			<li><a href="">About</a>
+			<li><a href="">Work</a>
+			<li><a href="">Contact </a>	
+			<li><a href="">Clients</a>
+		</ul>
+		<button value='closed'>BUTTON</button>
+	</div>
+	<div id='popup'>
+		<div id='popup-top'><button id='close-popup'>back</button></div>
+	</div>
+	<div id='content'>
+		<div id='Landing' class='section'>
+			<div><h1>I Code.</h1><h1>I Design.</h1><h1>I Create.</h1></div>
+		</div>
+		<div id='About' class='section'> 
+			<div id='about-head'>
+				<h1>My Story </h1>
+				<h1>Resume(.pdf)</h1>
+			</div>
+			<div id='timeline'>
+				<ul>
+					<li id='Syracuse University'><p>9/2004</p><p>5/2008</p><p>orange</p>
+					<li id='Event Technical Services'><p>9/2005</p><p>12/2007</p><p>navy</p>
+					<li id='Tapestry Films'><p>2/2009</p><p>5/2009</p><p>yellow</p>
+					<li id='Production Assistant'><p>5/2009</p><p>5/2013</p><p>green</p>
+					<li id='Coding Dojo'><p>10/2013</p><p>12/2013</p><p>lightblue</p>
+					<li id='Playboy TV'><p>6/2014</p><p>7/2016</p><p>pink</p>
+					<li id='KCRW'><p>6/2015</p><p>present</p><p>teal</p>
+					<li id='Machinima'><p>7/2015</p><p>2/2016</p><p>red</p>
+					<li id='Studio Arts'><p>10/2015</p><p>5/2016</p><p>darkgray</p>
+					<li id='Web Developer'><p>1/2014</p><p>present</p><p>lightgray</p>
+				</ul>
+			</div>
+			<div id='bio'>
+				<div>
+					<h2>ABOUT</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat necessitatibus aliquam aut tempore, voluptas dicta accusamus alias deleniti. Illo sequi sapiente maxime fuga incidunt eius reiciendis qui quibusdam, non minus! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae animi omnis, autem molestias tempora. Nam, quis! Earum quod aperiam libero numquam, at totam cumque explicabo iure dicta error nihil perspiciatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum quis, architecto obcaecati libero accusamus, dicta blanditiis nobis totam, tenetur pariatur cupiditate. Tenetur officia fuga harum beatae autem natus id unde?</p>
+				</div>
+				<div>
+					<h2>SKILLS</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat necessitatibus aliquam aut tempore, voluptas dicta accusamus alias deleniti. Illo sequi sapiente maxime fuga incidunt eius reiciendis qui quibusdam, non minus! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae animi omnis, autem molestias tempora. Nam, quis! Earum quod aperiam libero numquam, at totam cumque explicabo iure dicta error nihil perspiciatis.</p>
+				</div>
+			</div>
+		</div>
+		<div id='Work' class='section'>
+			<div id='work-menu'>
+				<h3>Choose A Portfolio</h3>
+				<h3>Click/Tap A Thumbnail For A Closer Look</h3>
+				<ul>
+					<li>Graphics
+					<li>Motion/VFX
+					<li>Interactive
+				</ul>
+			</div>
+			<div id='work-carousel'>
+				<ul id='graphics' class='portfolio'>
+					<li id='alumnify_pitchdeck'>
+						<div class='portfolio-thumbnail'>
+							<img src='img/portfolio/alumnify_pitchdeck_1.jpg' alt='alumnify_thumbnail'>
+							<h2>Pitchdeck For Alumnify (2013)</h2>
+						</div>
+						<div class='portfolio-details'>
+							<p>I made this pitchdeck for Alumnify in Photoshop while they were raising a second round of seed funding during 2013. Alumnify accepted their invitation to ?? startup accelerator a few weeks later.</p>
+							<ul>
+								<li><img src='img/portfolio/alumnify_pitchdeck_1.jpg' alt='alumnify_pitchdeck_1'>
+								<li><img src='img/portfolio/alumnify_pitchdeck_2.jpg' alt='alumnify_pitchdeck_2'>
+								<li><img src='img/portfolio/alumnify_pitchdeck_3.jpg' alt='alumnify_pitchdeck_3'>
+								<li><img src='img/portfolio/alumnify_pitchdeck_4.jpg' alt='alumnify_pitchdeck_4'>
+								<li><img src='img/portfolio/alumnify_pitchdeck_5.jpg' alt='alumnify_pitchdeck_5'>
+								<li><img src='img/portfolio/alumnify_pitchdeck_6.jpg' alt='alumnify_pitchdeck_6'>
+								<li><img src='img/portfolio/alumnify_pitchdeck_7.jpg' alt='alumnify_pitchdeck_7'>
+								<li><img src='img/portfolio/alumnify_pitchdeck_8.jpg' alt='alumnify_pitchdeck_8'>
+								<li><img src='img/portfolio/alumnify_pitchdeck_9.jpg' alt='alumnify_pitchdeck_9'>
+								<li><img src='img/portfolio/alumnify_pitchdeck_10.jpg' alt='alumnify_pitchdeck_10'>
+								<li><img src='img/portfolio/alumnify_pitchdeck_11.jpg' alt='alumnify_pitchdeck_11'>
+								<li><img src='img/portfolio/alumnify_pitchdeck_12.jpg' alt='alumnify_pitchdeck_12'>
+								<li><img src='img/portfolio/alumnify_pitchdeck_13.jpg' alt='alumnify_pitchdeck_13'>
+								<li><img src='img/portfolio/alumnify_pitchdeck_14.jpg' alt='alumnify_pitchdeck_14'>
+								<li><img src='img/portfolio/alumnify_pitchdeck_15.jpg' alt='alumnify_pitchdeck_15'>
+								<li><img src='img/portfolio/alumnify_pitchdeck_16.jpg' alt='alumnify_pitchdeck_16'>
+								<li><img src='img/portfolio/alumnify_pitchdeck_17.jpg' alt='alumnify_pitchdeck_17'>
+								<li><img src='img/portfolio/alumnify_pitchdeck_18.jpg' alt='alumnify_pitchdeck_18'>
+							</ul>
+						</div>
+					</li>
+					<li id='shoshana_mockup'>
+						<div class='portfolio-thumbnail'>
+							<img src='img/portfolio/shoshana_mockup_1.png' alt='shoshana_thumbnail'>
+							<h2>Website Mockup For Shoshana Zambriskiy-Stachel (2014)</h2>
+						</div>
+						<div class='portfolio-details'>
+							<p>This is a "wireframe" website mockup I made for a Bay Area photographer and gallery owner. Designed with Balsamiq in 2014</p>
+							<ul>	
+								<li><img src='img/portfolio/shoshana_mockup_1.png' alt='shoshana_mockup_1'>
+								<li><img src='img/portfolio/shoshana_mockup_2.png' alt='shoshana_mockup_2'>
+								<li><img src='img/portfolio/shoshana_mockup_3.png' alt='shoshana_mockup_3'>
+								<li><img src='img/portfolio/shoshana_mockup_4.png' alt='shoshana_mockup_4'>
+								<li><img src='img/portfolio/shoshana_mockup_5.png' alt='shoshana_mockup_5'>
+								<li><img src='img/portfolio/shoshana_mockup_6.png' alt='shoshana_mockup_6'>
+								<li><img src='img/portfolio/shoshana_mockup_7.png' alt='shoshana_mockup_7'>
+							</ul>
+						</div>
+					</li>
+					<li id='pompom_mockup'>
+						<div class='portfolio-thumbnail'>
+							<img src='img/portfolio/pompom_mockup_1.jpg' alt='pompom_thumbnail'>
+							<h2>Website Mockup For Pom-Pom Pictures (2013)</h2>
+						</div>
+						<div class='portfolio-details'>
+							<p>I made this "high-res" website mockup for a Los Angeles independent film production company. Created with Photoshop in 2013.</p>
+							<ul>
+								<li><img src='img/portfolio/pompom_mockup_1.jpg' alt='pompom_mockup_1'>
+								<li><img src='img/portfolio/pompom_mockup_2.jpg' alt='pompom_mockup_2'>
+								<li><img src='img/portfolio/pompom_mockup_3.jpg' alt='pompom_mockup_3'>
+								<li><img src='img/portfolio/pompom_mockup_4.jpg' alt='pompom_mockup_4'>
+								<li><img src='img/portfolio/pompom_mockup_5.jpg' alt='pompom_mockup_5'>
+							</ul>
+						</div>
+					</li>
+					<li id='funny_hypnosis_mockup'>
+						<div class='portfolio-thumbnail'>
+							<img src='img/portfolio/funny_hypnosis_mockup.jpg' alt='funny_hypnosis_thumbnail'>
+							<h2>Website Mockup For Funny Hypnosis (2013)</h2>
+						</div>
+						<div class='portfolio-details'>
+							<p>I made this "high-res" website mockup for a live comedy/hypnosis show based in Southern California. Created with Photoshop in 2013</p>
+							<ul>
+								<li><img src='img/portfolio/funny_hypnosis_mockup.jpg' alt='funny_hypnosis_mockup'>
+							</ul>
+						</div>
+					</li>
+				</ul>
+				<ul id='motion/vfx' class='portfolio'></ul>
+				<ul id='interactive' class='portfolio'></ul>
+			</div>
+		</div>
+		<div id='Contact' class='section'>
+			<div id='contact-head'></div>
+			<div id='contact-card'></div>
+			<div id='hollywood-sign'></div>
+		</div>
+	</div>
+</body>
+</html>	
+

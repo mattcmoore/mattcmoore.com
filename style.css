@@ -1,0 +1,337 @@
+h1,h2,h3,p,ul,li{
+	padding: 0;
+	margin: 0;
+	font: sans-serif;
+}
+ul{
+	list-style: none;
+}
+/* BEGIN NAV */
+#nav{
+	width: 100%;
+	height: 12%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: #ffffff;
+	z-index: 1000;
+	box-shadow: 0px 0px 25px;
+}
+#nav ul{
+	width: 50%;/* set width by by jQuery */
+	font-size: 30px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+#nav ul li{
+	width: 25%;
+	height: 100%;
+	display: inline-block;
+}
+#nav ul a{
+	width: 100%;
+	height: auto;
+	display: block;
+	text-align: center;
+	vertical-align: bottom;
+	text-decoration: none;
+	color: black;
+}
+#nav button{
+	display: none;
+}
+
+/* BEGIN POPUP */
+#popup{
+	width: 100%;
+	height: auto;
+	top: 0;
+	left: 0;
+	z-index: 800;
+	background-color: #000000;
+}
+#popup-top{
+	width: 100%;
+	height: 10%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 850;
+	background-color: #000000;
+}
+#popup button{
+	height: 70%;
+	position: absolute;
+	top: 15%;
+	right: 5%;
+	display: block;
+}
+#popup p{
+	width: 90%;
+	height: auto%;
+	padding: 4% 5% 1% 5%;
+	position: fixed;
+	top: 10%;
+	left: 0;
+	background-color: #000000;
+	color: white;
+	text-align: center;	
+	box-shadow: 0px 20px 20px #000000;
+	z-index: 850;
+}
+#popup ul{
+	width: 100%;
+	height: auto;
+	padding-top: 40px;
+	position: absolute;
+	left: 0;
+	background-color: #000000;
+}
+#popup ul li{
+	width: 100%;
+	height: auto;
+	padding-bottom: 5%;
+}
+#popup div img{
+	width: 80%;
+	max-height: 97%;
+	display: block;
+	z-index: 825;
+	margin: 0 auto;
+}
+/* BEGIN CONTENT */
+#content{
+	width: 100%;
+	height: 352%;
+	position: absolute;
+	top: 12%;
+	left: 0;
+	z-index: 900;
+}
+/* LANDING */
+#Landing{
+	background-color: red;
+}
+#Landing div{
+	width: 60%;
+	height: auto;
+	float: left;
+	margin-left: 20%;
+	color: white;
+	font-size: 20px;
+	border: 2px solid white;
+	padding: 0 5%;
+}
+#Landing div h1{
+	float: left;
+	text-align: center;
+}
+/* ABOUT */
+#About{
+	background-color: orange;
+	overflow: hidden;
+}
+#about-head{
+	width: 90%;
+	height: 10%;
+	position: relative;
+	left: 10%;
+	border-top: 1px solid red; border-bottom: 1px solid red;
+	display: table;
+}
+#about-head h1{
+	float: left;
+	display: table-cell;
+	vertical-align: middle;
+	margin: 1.5% 0;
+	padding: 0 2%;
+}
+#about-head h1:nth-child(2){
+	border-left: 1px dashed black;
+}
+#timeline{
+	width: 100%;
+	height: 60%;
+	border-top: 1px solid gold; border-bottom: 1px solid gold;
+}
+#timeline ul{}
+#timeline ul li{}
+#timeline ul li p{
+	display: none;
+}
+#bio{
+	width: 100%;
+	height: 30%;
+	border-top: 1px solid green; border-bottom: 1px solid green;
+	overflow: hidden;
+}
+#bio div{
+	float: left;
+	height: 100%;
+}
+#bio div:nth-child(1){
+	width: 60%;
+	background-color: lightblue;
+}
+#bio div:nth-child(2){
+	left: 60%;
+	width: 40%;		
+	background-color: purple;
+}
+#bio div h2{
+	width: 100%;
+	text-align: center;
+}
+#bio div p{
+	padding: 1% 2% 0 2%;
+}
+
+/* WORK */
+#Work{
+	background-image: url('img/work-bg.png');
+}
+#work-menu{
+	width: 40%;
+	height: 100%;
+	float: left;
+	border-top: 2px solid blue;
+}
+#work-menu ul{
+	width: 100%;
+	height: 75%;
+	position: relative;
+	top: 25%;
+	border-top: 1px solid pink;
+}
+#work-menu ul li{
+	height: 28%;
+	width: 100%;
+	border: 1px solid white;
+	text-align: center;
+}
+#work-carousel{
+	width: 60%;
+	height: 100%;
+	float: left;
+	overflow-y: auto;
+}
+.portfolio{
+	width: 80%;
+	height: auto;
+	position: relative;
+	margin: 5% 0;
+	left: 10%;
+	padding: 0;
+	color: black;
+	text-align: center;
+	font-size: 20px;
+}
+.portfolio li{
+	width: 100%;
+	height: auto;
+	margin-bottom: 5%;
+}
+.portfolio-thumbnail{
+	max-width: 100%;
+}
+.portfolio-thumbnail img{
+	max-width: 100%;
+	height: 25%;
+	margin-bottom: 2%;
+	box-shadow: 0 10px 20px;
+}
+.portfolio-thumbnail img:hover{
+	border: 3px solid white;
+}
+.portfolio-thumbnail h2{
+	padding: 0 1%;
+}
+.portfolio-details{
+	display: none;
+}
+/* CONTACT */
+#Contact{
+	background-color: green;
+}
+#contact-card{
+	width: 100%;
+	height: 50%;
+	position: relative;
+	top: 10%;
+	background-color: lightgreen;
+}
+.section{
+	width: 100%;
+	height: 25%;
+}
+@media (max-width: 800px){
+	#nav ul{		
+		width: 60%;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		right: -60%;
+		overflow: hidden;
+		display: block;
+		background-color: gray;
+	}
+	#nav ul li{
+		width: 100%;
+		height: 25%;
+		display: table;
+		border-bottom: 1px solid black;
+	}
+	#nav ul a{
+		display: table-cell;
+		vertical-align: middle;
+	}
+	#nav button{
+		height: auto;
+		width: auto;
+		display: block;
+		position: absolute;
+		right: 20px;
+		top: 10%;
+		bottom: 10%;
+		padding: .5%;
+		border: 1px solid black;
+	}
+	#about-head{
+		font-size: 14px;
+	}
+	#timeline{
+		height: 50%;
+	}
+	#bio{
+		height: 40%;
+		width: 100%;
+	}
+	#bio div:nth-child(1) , #bio div:nth-child(2){
+		width: 100%;
+		height: 50%;
+		left: 0;
+		overflow: hidden;
+	}
+	#work-menu{
+		height: 10%;
+		width: 100%;
+		background-color: pink;
+	}
+	#work-menu ul{
+		height: 100%;
+		width: 80%;
+		left: 20%;
+		top: 0;
+	}
+	#work-menu ul li{
+		display: inline-block;
+		width: 33%;
+		border: none;
+	}
+	#work-carousel{
+		height: 90%;
+		width: 100%;
+		background-image: url('img/work-bg.png');
+	}
+}
