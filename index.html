@@ -22,6 +22,7 @@
 			if($(this).parents('li').children('div.portfolio-details').children()[1].childElementCount == 1){
 				$('#popup ul').css({'bottom':0});
 				$('#popup li').css({'height':'100%','padding':0});
+				$('#popup li img').css({'height':'90%','position':'relative','top':'5%'});
 			}
 			$('html, body').animate({scrollTop: 0}, 1); 
 		});
@@ -127,11 +128,14 @@
 			<div id='work-menu'>
 				<h3>Choose A Portfolio</h3>
 				<h3>Click/Tap A Thumbnail For A Closer Look</h3>
-				<ul>
-					<li>Graphics
-					<li>Motion/VFX
-					<li>Interactive
+				<ul>	
+					<li><canvas></canvas>
+					<li><canvas></canvas>
+					<li><canvas></canvas>
 				</ul>
+			<script>
+				
+			</script>
 			</div>
 			<div id='work-carousel'>
 				<ul id='graphics' class='portfolio'>
