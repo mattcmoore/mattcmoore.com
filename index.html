@@ -10,19 +10,20 @@
 <body>
 <script>
 	$(document).ready(function(){
-		
 		// open popup
 		$('.portfolio-thumbnail img').click(function(){
 			$('#nav , #content').css('display','none');	
 			$(this).parents('li').children('div.portfolio-details').clone().appendTo('#popup');
 			$('.portfolio-details').css({'display':'block'});
-			var popupListTop = 	(((( $('#popup div p').height()+$('#popup-top').height() )/$(window).height())*100).toFixed(2)).toString()+'%';
-			$('#popup ul').css({'position':'absolute','top':popupListTop});
+			var popupListTop = 	(((( $('#popup div p').outerHeight()+$('#popup-top').height() )/$(window).height())*100).toFixed(2)).toString()+'%';
+			$('#popup ul').css({'position':'absolute','top':popupListTop,'padding-top':'15px'});
 			$('#popup li').css({'height':'auto','background-color':'#000000'});		
 			if($(this).parents('li').children('div.portfolio-details').children()[1].childElementCount == 1){
-				$('#popup ul').css({'bottom':0});
+				console.log(parseFloat(popupListTop));
+				$('#popup ul').css({'height':(100-parseFloat(popupListTop).toString()+'%'),'padding':0});
 				$('#popup li').css({'height':'100%','padding':0});
-				$('#popup li img').css({'height':'90%','position':'relative','top':'5%'});
+				$('#popup li img').css({'height':'90%','width':'auto','max-width':'90%','position':'relative','top':'5%'});
+				
 			}
 			$('html, body').animate({scrollTop: 0}, 1); 
 		});
@@ -57,25 +58,6 @@
 				$('#content').css({'left':'0'});
 			}
 		});
-/*		
-		//open mobile nav | why overflow:hidden ??
-		$('#nav button').click(function(){
-			if($(this).attr('value') == 'closed'){
-				$('#nav ul').css('right',0);
-				$('#content').css({'left':'-60%','overflow':'hidden'});
-				$(this).text('CLOSE').attr('value','open');
-				console.log($(this).attr('value'));
-			}
-		});
-		//close mobile nav | why overflow:hidden ??
-		 $('#nav button').click(function(){
-			if($(this).attr('value') == 'open'){
-				$('#nav ul').css('right','-60%');
-				$('#content').css({'left':'0','overflow':'hidden'});
-				$(this).text('OPEN').attr('value','closed');
-			}
-		});
-*/
 	});
 </script>
 	<div id='nav'>
@@ -129,14 +111,14 @@
 				<h3>Choose A Portfolio</h3>
 				<h3>Click/Tap A Thumbnail For A Closer Look</h3>
 				<ul>	
-					<li><canvas></canvas>
-					<li><canvas></canvas>
-					<li><canvas></canvas>
+					<li id='select-graphics'><canvas></canvas></li>
+					<li id='select-motion'><canvas></canvas></li>
+					<li id='select-interactive'><canvas></canvas></li>
 				</ul>
+			</div>
 			<script>
 				
 			</script>
-			</div>
 			<div id='work-carousel'>
 				<ul id='graphics' class='portfolio'>
 					<li id='alumnify_pitchdeck'>
