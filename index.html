@@ -15,14 +15,13 @@
 			$('#nav , #content').css('display','none');	
 			$(this).parents('li').children('div.portfolio-details').clone().appendTo('#popup');
 			$('.portfolio-details').css({'display':'block'});
-			var popupListTop = 	(((( $('#popup div p').outerHeight()+$('#popup-top').height() )/$(window).height())*100).toFixed(2)).toString()+'%';
-			$('#popup ul').css({'position':'absolute','top':popupListTop,'padding-top':'15px'});
+			var popupFixed = $('#popup div p').outerHeight()+$('#popup-top').height();
+			$('#popup ul').css({'position':'absolute','top':popupFixed,'padding-top':'15px'});
 			$('#popup li').css({'height':'auto','background-color':'#000000'});		
 			if($(this).parents('li').children('div.portfolio-details').children()[1].childElementCount == 1){
-				console.log(parseFloat(popupListTop));
-				$('#popup ul').css({'height':(100-parseFloat(popupListTop).toString()+'%'),'padding':0});
+				$('#popup ul').css({'height':$(window).height()- popupFixed,'padding':0});
 				$('#popup li').css({'height':'100%','padding':0});
-				$('#popup li img').css({'height':'90%','width':'auto','max-width':'90%','position':'relative','top':'5%'});
+				$('#popup li img').css({'max-height':'90%','width':'auto','max-width':'90%','position':'relative','top':'5%'});
 				
 			}
 			$('html, body').animate({scrollTop: 0}, 1); 
@@ -56,6 +55,15 @@
 			if($(window).width()<800 && $('#nav button').attr('value')=='closed'){
 				$('#nav ul').css('right','-60%');
 				$('#content').css({'left':'0'});
+			}
+			//puts portfolio ul under fixed elements
+			var popupFixed = $('#popup div p').outerHeight()+$('#popup-top').height();
+			if($('.portfolio-details').css('display') == 'block'){
+				$('#popup ul').css('top',popupFixed);
+				if($('#popup .portfolio-details').children()[1].childElementCount == 1){
+					$('#popup ul').css({'height':$(window).height()-popupFixed,'padding':0}); 
+				}
+	
 			}
 		});
 	});
