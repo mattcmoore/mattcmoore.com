@@ -63,7 +63,6 @@
 				if($('#popup .portfolio-details').children()[1].childElementCount == 1){
 					$('#popup ul').css({'height':$(window).height()-popupFixed,'padding':0}); 
 				}
-	
 			}
 		});
 	});
@@ -119,13 +118,30 @@
 				<h3>Choose A Portfolio</h3>
 				<h3>Click/Tap A Thumbnail For A Closer Look</h3>
 				<ul>	
-					<li id='select-graphics'><canvas></canvas></li>
-					<li id='select-motion'><canvas></canvas></li>
-					<li id='select-interactive'><canvas></canvas></li>
+					<li id='select-graphics'><canvas id='1' class='menu-saw'></canvas></li>
+					<li id='select-motion'><canvas  class='menu-saw'></canvas></li>
+					<li id='select-interactive'><canvas class='menu-saw'></canvas></li>
 				</ul>
 			</div>
 			<script>
-				
+				$('#Work').ready(function(){
+					$('#work-menu ul li').mouseenter(function(){
+						$(this).css('left',0);
+						$(this).siblings().css('left','-30%');
+					}).mouseleave(function(){
+						$('work-menu ul li').css('left','-30%');
+					});
+
+					$('.menu-saw').width($('#work-menu ul li').width()).height($('#work-menu ul li').height()).css({'background-color':'#ff0000','border':'1px solid black'});
+					var c = document.getElementById('1');
+					var ctx = c.getContext("2d");
+					var x = $('#work-menu ul li canvas').width();
+					var y = $('#work-menu ul li canvas').height();
+					ctx.moveTo(0,0);
+					ctx.lineTo(x,y);
+					ctx.stroke();
+				});
+				$(window).resize(function(){$('.menu-saw').css({'width':'100%','height':'100%'})});
 			</script>
 			<div id='work-carousel'>
 				<ul id='graphics' class='portfolio'>
@@ -218,3 +234,7 @@
 </body>
 </html>	
 
+<!--
+		-
+
+-->
