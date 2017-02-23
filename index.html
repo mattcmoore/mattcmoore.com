@@ -114,13 +114,15 @@
 			</div>
 		</div>
 		<div id='Work' class='section'>
+			<div class='saw-border'></div>
+			<canvas id='saw-canvas-top' class='saw-canvas'></canvas>
 			<div id='work-menu'>
 				<h3>Choose A Portfolio</h3>
 				<h3>Click/Tap A Thumbnail For A Closer Look</h3>
 				<ul>	
-					<li id='select-graphics'><canvas id='1' class='menu-saw'></canvas></li>
-					<li id='select-motion'><canvas  class='menu-saw'></canvas></li>
-					<li id='select-interactive'><canvas class='menu-saw'></canvas></li>
+					<li id='select-graphics'><canvas id='1' class='menu-saw'>graphics</canvas></li>
+					<li id='select-motion'><canvas  class='menu-saw'>motion/vfx</canvas></li>
+					<li id='select-interactive'><canvas class='menu-saw'>interactive</canvas></li>
 				</ul>
 			</div>
 			<script>
@@ -131,15 +133,28 @@
 					}).mouseleave(function(){
 						$('work-menu ul li').css('left','-30%');
 					});
-
-					$('.menu-saw').width($('#work-menu ul li').width()).height($('#work-menu ul li').height()).css({'background-color':'#ff0000','border':'1px solid black'});
+					$('.menu-saw').attr({'width':$('#work-menu ul li').width(),'height':$('#work-menu ul li').height(),'style':'background-color: #ff0000'});
 					var c = document.getElementById('1');
 					var ctx = c.getContext("2d");
 					var x = $('#work-menu ul li canvas').width();
 					var y = $('#work-menu ul li canvas').height();
-					ctx.moveTo(0,0);
-					ctx.lineTo(x,y);
-					ctx.stroke();
+					console.log(x+', '+y);
+					console.log($('#work-menu ul li canvas').height()+', '+$('#work-menu ul li canvas').outerHeight());
+					function drawMenuSawtooth(teeth){
+						ctx.moveTo(0,y/2);
+						var t = teeth * 2;
+						console.log(t);
+						for(var i=1;i<t;i+=2){
+							ctx.lineTo((x/t)*i,y);
+							ctx.moveTo((x/t)*i,y);
+							ctx.lineTo((x/t)*(i+1),y/2);
+							ctx.moveTo((x/t)*(i+1),y/2);
+						}				
+						ctx.stroke();
+						ctx.stroke();
+						ctx.stroke();
+					}
+					drawMenuSawtooth(10);
 				});
 				$(window).resize(function(){$('.menu-saw').css({'width':'100%','height':'100%'})});
 			</script>
@@ -224,6 +239,8 @@
 				<ul id='motion/vfx' class='portfolio'></ul>
 				<ul id='interactive' class='portfolio'></ul>
 			</div>
+			<canvas id='saw-canvas-bottom' class='saw-canvas'></canvas>
+			<div class='saw-border'></canvas></div>
 		</div>
 		<div id='Contact' class='section'>
 			<div id='contact-head'></div>
