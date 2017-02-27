@@ -127,33 +127,40 @@
 			</div>
 			<script>
 				$('#Work').ready(function(){
-					$('#work-menu ul li').mouseenter(function(){
-						$(this).css('left',0);
-						$(this).siblings().css('left','-30%');
-					}).mouseleave(function(){
-						$('work-menu ul li').css('left','-30%');
+					// sliding menu bars
+					$( '#work-menu ul li').click(function() {
+  						$(this).animate({left: '0'});
+						$(this).siblings().each(function(){
+							if($(this).width() > 0.7 * $('#work-menu').width()){
+								$(this).animate({left: $('#work-menu').width()*-0.3});
+							};
+						});
 					});
-					$('.menu-saw').attr({'width':$('#work-menu ul li').width(),'height':$('#work-menu ul li').height(),'style':'background-color: #ff0000'});
+					// sets canvas height .attr to container height CSS
+					$('.menu-saw').attr({'width':$('#work-menu ul li').width(),'height':$('#work-menu ul li').height()});
 					var c = document.getElementById('1');
 					var ctx = c.getContext("2d");
 					var x = $('#work-menu ul li canvas').width();
 					var y = $('#work-menu ul li canvas').height();
-					console.log(x+', '+y);
-					console.log($('#work-menu ul li canvas').height()+', '+$('#work-menu ul li canvas').outerHeight());
+					function menuText(){
+						// make the function that adds saw to all menu bars, then add canvas.text() to menu bars 2.5% above the saw and dynamically size text
+						 to 45% of menu bar.
+					}
+					menuText();
 					function drawMenuSawtooth(teeth){
-						ctx.moveTo(0,y/2);
 						var t = teeth * 2;
-						console.log(t);
+						ctx.moveTo(0,(y/2)+10);
 						for(var i=1;i<t;i+=2){
 							ctx.lineTo((x/t)*i,y);
 							ctx.moveTo((x/t)*i,y);
-							ctx.lineTo((x/t)*(i+1),y/2);
-							ctx.moveTo((x/t)*(i+1),y/2);
+							ctx.lineTo((x/t)*(i+1),(y/2)+10);
+							ctx.moveTo((x/t)*(i+1),(y/2)+10);
 						}				
-						ctx.stroke();
-						ctx.stroke();
+						ctx.lineWidth = 3;
 						ctx.stroke();
 					}
+					drawMenuSawtooth(10);
+					ctx.setTransform(1,0,0,1,0,-10);
 					drawMenuSawtooth(10);
 				});
 				$(window).resize(function(){$('.menu-saw').css({'width':'100%','height':'100%'})});
