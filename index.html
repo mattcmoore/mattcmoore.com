@@ -120,9 +120,9 @@
 				<h3>Choose A Portfolio</h3>
 				<h3>Click/Tap A Thumbnail For A Closer Look</h3>
 				<ul>	
-					<li id='select-graphics'><canvas id='1' class='menu-saw'>graphics</canvas></li>
-					<li id='select-motion'><canvas  class='menu-saw'>motion/vfx</canvas></li>
-					<li id='select-interactive'><canvas class='menu-saw'>interactive</canvas></li>
+					<li id='select-graphics'><canvas id='graphics-saw' class='menu-saw'>graphics</canvas></li>
+					<li id='select-motion'><canvas id='motion-saw' class='menu-saw'>motion/vfx</canvas></li>
+					<li id='select-interactive'><canvas id='interactive-saw' class='menu-saw'>interactive</canvas></li>
 				</ul>
 			</div>
 			<script>
@@ -136,32 +136,43 @@
 							};
 						});
 					});
-					// sets canvas height .attr to container height CSS
+					// sets canvas width/height .attr to container width/height 
 					$('.menu-saw').attr({'width':$('#work-menu ul li').width(),'height':$('#work-menu ul li').height()});
-					var c = document.getElementById('1');
-					var ctx = c.getContext("2d");
-					var x = $('#work-menu ul li canvas').width();
-					var y = $('#work-menu ul li canvas').height();
-					function menuText(){
-						// make the function that adds saw to all menu bars, then add canvas.text() to menu bars 2.5% above the saw and dynamically size text
-						 to 45% of menu bar.
+					$('#work-menu ul li canvas').each(function(){
+						var c = document.getElementById($(this)[0].id);
+						// IS IT BEST PRACTICE TO HANDLE SCOPE OF C VARIABLE BY PASSING IT AS AN ARGUMENT ???
+						createMenuSlider(c);
+					});
+					// var c = document.getElementById('graphics-saw');
+					function createMenuSlider(canvas){
+						var c = canvas;
+						console.log(c);
+						var ctx = c.getContext("2d");
+						var x = $('#work-menu canvas').width();
+						var y = $('#work-menu canvas').height();
+						function menuText(){
+							ctx.font = (y*0.45).toString()+'px '+'Sans-serif';
+							ctx.textBaseline = 'bottom';
+							ctx.textAlign = 'right'
+							ctx.fillText(c.innerHTML,(x*.9),(y*0.475));
+						}
+						function drawMenuSawtooth(teeth){
+							var t = teeth * 2;
+							ctx.moveTo(0,(y/2)+10);
+							for(var i=1;i<t;i+=2){
+								ctx.lineTo((x/t)*i,y);
+								ctx.moveTo((x/t)*i,y);
+								ctx.lineTo((x/t)*(i+1),(y/2)+10);
+								ctx.moveTo((x/t)*(i+1),(y/2)+10);
+							}				
+							ctx.lineWidth = 3;
+							ctx.stroke();
+						}
+						menuText();
+						drawMenuSawtooth(10);
+						ctx.translate(0,-10);
+						drawMenuSawtooth(10);
 					}
-					menuText();
-					function drawMenuSawtooth(teeth){
-						var t = teeth * 2;
-						ctx.moveTo(0,(y/2)+10);
-						for(var i=1;i<t;i+=2){
-							ctx.lineTo((x/t)*i,y);
-							ctx.moveTo((x/t)*i,y);
-							ctx.lineTo((x/t)*(i+1),(y/2)+10);
-							ctx.moveTo((x/t)*(i+1),(y/2)+10);
-						}				
-						ctx.lineWidth = 3;
-						ctx.stroke();
-					}
-					drawMenuSawtooth(10);
-					ctx.setTransform(1,0,0,1,0,-10);
-					drawMenuSawtooth(10);
 				});
 				$(window).resize(function(){$('.menu-saw').css({'width':'100%','height':'100%'})});
 			</script>
