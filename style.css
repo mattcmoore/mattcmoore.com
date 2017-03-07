@@ -1,4 +1,4 @@
-h1,h2,h3,p,ul,li{
+ h1,h2,h3,p,ul,li{
 	padding: 0;
 	margin: 0;
 	font-family: sans-serif;
@@ -41,7 +41,6 @@ ul{
 #nav button{
 	display: none;
 }
-
 /* BEGIN POPUP */
 #popup{
 	width: 100%;
@@ -108,6 +107,10 @@ ul{
 	left: 0;
 	z-index: 900;
 }
+.section{
+	width: 100%;
+	height: 25%;
+}
 /* LANDING */
 #Landing{
 	background-color: red;
@@ -128,16 +131,16 @@ ul{
 }
 /* ABOUT */
 #About{
-	overflow: hidden;
-	z-index: 990;
+	position: relative;
 }
 #about-head{
 	width: 90%;
 	height: 10%;
 	position: relative;
 	left: 10%;
-	border-top: 1px solid red; border-bottom: 1px solid red;
+	border-top: 1px solid red;
 	display: table;
+	z-index: 950;
 }
 #about-head h1{
 	float: left;
@@ -152,7 +155,9 @@ ul{
 #timeline{
 	width: 100%;
 	height: 60%;
-	border-top: 1px solid gold; border-bottom: 1px solid gold;
+	position: relative;
+	z-index: 950;
+	border-top: 1px solid gold;
 }
 #timeline ul{}
 #timeline ul li{}
@@ -162,13 +167,16 @@ ul{
 #bio{
 	width: 100%;
 	height: 30%;
-	border-top: 1px solid green; border-bottom: 1px solid green;
+	border-top: 1px solid blue;
+	z-index: 950;
+	position: relative;
 	overflow: hidden;
 }
 #bio div{
 	float: left;
-	height: 99%;
+	height: auto;
 	padding-top: 1%;
+	overflow-y: hidden;
 }
 #bio div:nth-child(1){
 	width: 60%;
@@ -186,34 +194,36 @@ ul{
 #bio div p{
 	padding: 1% 2% 0 2%;
 }
+.border-canvas{
+	width: 100%;
+	height: 105%;
+	position: absolute;
+	border-top: 2px solid green; 
+	border-bottom: 2px solid green;
+}
+.border-canvas img{
+	display: none;
+}
+#saw-bg-top{
+	top: 0;
+	z-index: 930;
+	background-color: lightblue;
+}
+#saw-bg-top canvas{
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 
 /* WORK */
 #Work{
 	background-image: url('img/work-bg.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: top left;
 	position: relative;
 }
-.saw-border{
-	width: 100%;
-	height: 5%;
-	position: absolute;
-	left: 0;
-	border-bottom: 1px solid green;
-}
-.saw-border:last-child , #saw-canvas-bottom{
-	bottom: 0;
-}
-.saw-canvas{
-	width: 100%;
-	height: 105%;
-	position: absolute;
-	z-index: 960;
-}
-#saw-canvas-top{
-	bottom: 95%;
-	background-image: url('img/graph.png');
-	background-size: 100%; 
-	background-position: left bottom;
-	background-repeat: no-repeat;
+
+#saw-bg-bottom{
 }
 #work-menu{
 	width: 40%;
@@ -260,6 +270,9 @@ ul{
 #work-menu ul li:last-child{
 	margin-bottom: 0;
 }
+#work-menu ul li p{
+	display: none;
+}
 #work-menu ul li canvas{
 	height: 100%;
 	width: 100%;
@@ -273,7 +286,6 @@ ul{
 	top: 0;
 	right: 0;
 	overflow-y: auto;
-	z-index: 950;
 }
 .portfolio{
 	width: 80%;
@@ -311,7 +323,9 @@ ul{
 }
 /* CONTACT */
 #Contact{
+	position: relative;
 	background-color: green;
+	z-index: 950;
 }
 #contact-card{
 	width: 100%;
@@ -319,10 +333,7 @@ ul{
 	position: relative;
 	top: 10%;
 	background-color: lightgreen;
-}
-.section{
-	width: 100%;
-	height: 25%;
+	z-index: inherit;
 }
 @media (max-width: 800px){
 	#nav ul{		
@@ -356,6 +367,9 @@ ul{
 		padding: .5%;
 		border: 1px solid black;
 	}
+	#About{
+		background-image: url('img/graph.png');
+	}
 	#about-head{
 		font-size: 14px;
 	}
@@ -370,40 +384,70 @@ ul{
 		width: 100%;
 		height: 50%;
 		left: 0;
-		overflow: hidden;
 	}
 	#work-menu{
 		height: 10%;
 		width: 100%;
-		background-color: pink;
+		background-image: url('img/work-bg.png');
+		background-size: 50% 1000%;
+		background-position: top left;
+		position: absolute;
+		top: 0;
+
+		z-index: 950;
 	}
-	.saw-border , .saw-canvas{
+	.saw-canvas{
 		display: none;
 	}
-	#work-menu h3:nth-child(1), #work-menu h3:nth-child(2){;
-		display: inline;
-		width: auto;
-		background-color: black;
+	#work-menu h3{
 		color: white;
-		font-size: 12px;
+	}
+	#work-menu h3:nth-child(1), #work-menu h3:nth-child(2){
+		display: block;
+		height: 25%;
+		width: 100%;
+		position: absolute;
+		left: 0;
+		padding: 1.5% 0 0 0;
+		margin: 0;
 		transform: none;
-		margin:0;
-		padding: 0;	
-		text-align: left;
+		font-size: 12px;
 		box-shadow: none;
+		opacity: .8;
+	}
+	#work-menu h3:nth-child(1){
+		bottom: -864%;
+	}
+	 #work-menu h3:nth-child(2){
+		bottom: -900%;
+		border-top: 1px solid #000000;
 	}
 	#work-menu ul{
 		height: 100%;
 		width: 80%;
+		position: absolute;
 		left: 20%;
 		top: 0;
 	}
 	#work-menu ul li{
+		width: 16%;
+		height: 50%;
 		display: inline-block;
-		width: 33%;
-		border: none;
+		margin-left: 13%;
+		padding-top: 1%;
+		left: 0;
+		background-color: black;
+		color: #ffffff;
+		text-align: center;
 	}
-	#work-menu ul canvas{
+	#work-menu ul li p{
+		height: auto;
+		width: auto;
+		padding: 7.5%;
+		display: block;
+		vertical-align: middle;
+	}
+	#work-menu ul li canvas{
 		display: none;
 	}
 	#work-carousel{
