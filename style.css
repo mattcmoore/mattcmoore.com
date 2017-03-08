@@ -23,22 +23,25 @@ ul{
 	position: absolute;
 	right: 0;
 	bottom: 0;
+	border-right: 1px solid blue; border-left: 1px solid blue;
 }
 #nav ul li{
-	width: 25%;
+	width: auto;
 	height: 100%;
 	display: inline-block;
+	float: right;
 }
-#nav ul a{
-	width: 100%;
+#nav ul p{
+	width: auto;
 	height: auto;
-	display: block;
+	padding: 0;
+	margin: 0;
 	text-align: center;
 	vertical-align: bottom;
-	text-decoration: none;
 	color: black;
+	border: 1px solid black;
 }
-#nav button{
+#toggleNavMenu{
 	display: none;
 }
 /* BEGIN POPUP */
@@ -114,19 +117,28 @@ ul{
 /* LANDING */
 #Landing{
 	background-color: red;
+	position: relative;
 }
-#Landing div{
-	width: 60%;
+#Landing ul{
+	width: auto;
 	height: auto;
-	float: left;
-	margin-left: 20%;
+	position: absolute;
+	top: 36%;
 	color: white;
 	font-size: 20px;
 	border: 2px solid white;
 	padding: 0 5%;
 }
+#Landing ul li{
+	display: inline-block;
+
+}
+#Landing ul li:nth-child(2){
+	display: inline-block;
+
+}
 #Landing div h1{
-	float: left;
+
 	text-align: center;
 }
 /* ABOUT */
@@ -167,16 +179,17 @@ ul{
 #bio{
 	width: 100%;
 	height: 30%;
+	position: absolute;
+	bottom: 0;
 	border-top: 1px solid blue;
 	z-index: 950;
-	position: relative;
-	overflow: hidden;
 }
 #bio div{
 	float: left;
-	height: auto;
+	height: 90%;
 	padding-top: 1%;
 	overflow-y: hidden;
+	border-bottom: 1px solid red;
 }
 #bio div:nth-child(1){
 	width: 60%;
@@ -201,13 +214,9 @@ ul{
 	border-top: 2px solid green; 
 	border-bottom: 2px solid green;
 }
-.border-canvas img{
-	display: none;
-}
 #saw-bg-top{
 	top: 0;
 	z-index: 930;
-	background-color: lightblue;
 }
 #saw-bg-top canvas{
 	background-repeat: no-repeat;
@@ -352,11 +361,11 @@ ul{
 		display: table;
 		border-bottom: 1px solid black;
 	}
-	#nav ul a{
+	#nav ul p{
 		display: table-cell;
 		vertical-align: middle;
 	}
-	#nav button{
+	#toggleNavMenu{
 		height: auto;
 		width: auto;
 		display: block;
@@ -367,8 +376,21 @@ ul{
 		padding: .5%;
 		border: 1px solid black;
 	}
+	#Landing ul{
+		padding: 5% 2%;
+	}
+	#Landing ul li{
+		display: block;
+	}
+	#Landing ul li:nth-child(2){
+		display: block;
+		margin: 5% 0;
+	}
 	#About{
 		background-image: url('img/graph.png');
+	}
+	.border-canvas canvas{
+		display: none;
 	}
 	#about-head{
 		font-size: 14px;
@@ -416,7 +438,7 @@ ul{
 		opacity: .8;
 	}
 	#work-menu h3:nth-child(1){
-		bottom: -864%;
+		bottom: -865%;
 	}
 	 #work-menu h3:nth-child(2){
 		bottom: -900%;
@@ -451,8 +473,13 @@ ul{
 		display: none;
 	}
 	#work-carousel{
-		height: 100%;
+		height: 90%;
 		width: 100%;
+		top: 10%;
 		background-image: url('img/work-bg.png');
+	}
+	.portfolio{
+		margin-bottom: 15%;
+		margin-top: 0%;
 	}
 }
