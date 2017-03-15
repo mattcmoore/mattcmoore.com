@@ -18,28 +18,27 @@ ul{
 	z-index: 1000;
 }
 #nav ul{
-	width: 50%;/* set width by by jQuery */
+	width: 50%;/*width set width by by jQuery */
+	height: 100%;
 	font-size: 30px;
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	border-right: 1px solid blue; border-left: 1px solid blue;
+	position: relative;
+	left: 45%;
+	background-color: blue;
 }
 #nav ul li{
 	width: auto;
 	height: 100%;
 	display: inline-block;
-	float: right;
+	background-color: green;
 }
 #nav ul p{
 	width: auto;
 	height: auto;
 	padding: 0;
 	margin: 0;
-	text-align: center;
-	vertical-align: bottom;
 	color: black;
-	border: 1px solid black;
+	background-color: red;
+/*	border: 1px solid black; */
 }
 #toggleNavMenu{
 	display: none;
@@ -53,7 +52,7 @@ ul{
 	z-index: 800;
 	background-color: #000000;
 }
-#popup-top{
+#popupTop{
 	width: 100%;
 	height: 10%;
 	position: fixed;
@@ -138,14 +137,13 @@ ul{
 
 }
 #Landing div h1{
-
 	text-align: center;
 }
 /* ABOUT */
 #About{
 	position: relative;
 }
-#about-head{
+#aboutHead{
 	width: 90%;
 	height: 10%;
 	position: relative;
@@ -154,14 +152,14 @@ ul{
 	display: table;
 	z-index: 950;
 }
-#about-head h1{
+#aboutHead h1{
 	float: left;
 	display: table-cell;
 	vertical-align: middle;
 	margin: 1.5% 0;
 	padding: 0 2%;
 }
-#about-head h1:nth-child(2){
+#aboutHead h1:nth-child(2){
 	border-left: 1px dashed black;
 }
 #timeline{
@@ -207,18 +205,16 @@ ul{
 #bio div p{
 	padding: 1% 2% 0 2%;
 }
-.border-canvas{
+.borderCanvas{
 	width: 100%;
-	height: 105%;
+	height: 108%;
 	position: absolute;
-	border-top: 2px solid green; 
-	border-bottom: 2px solid green;
-}
-#saw-bg-top{
-	top: 0;
 	z-index: 930;
 }
-#saw-bg-top canvas{
+#sawBGTop{
+	top: 0;
+}
+#sawBGTop canvas{
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -231,10 +227,7 @@ ul{
 	background-position: top left;
 	position: relative;
 }
-
-#saw-bg-bottom{
-}
-#work-menu{
+#workMenu{
 	width: 40%;
 	height: 100%;
 	position: absolute;
@@ -242,33 +235,41 @@ ul{
 	left: 0;
 	perspective: 900px;
 }
-#work-menu h3{
+#workMenu div{
+	height: 35%;
+	width: 100%;
+	padding: 0;
+	position: absolute;
+	top: 5%;
+	left: 0;
+}
+#workMenu h3{
 	width: auto;
-	padding: 1% 2%;
+	height: auto;
+	padding: 1%;
 	display: inline-block;
 	background-color: black;
 	color: white;
 	text-align: center;
 	box-shadow: 0 20px 20px #000000;
 }
-#work-menu h3:nth-child(1){
-	margin-top: 14%;
-	margin-left: 3%;
+#workMenu h3:nth-child(1){
+	margin-top: 5%;
+	font-size: 30px;
 	transform: rotateY(-37deg) rotate(5deg);
-	font-size: 33px;
 }
-#work-menu h3:nth-child(2){
-	margin-top: 8%;
+#workMenu h3:nth-child(2){
+	margin-top: 9%;
+	font-size: 24px;
 	transform: rotateY(47deg) rotate(-5deg);
-	font-size: 25px;
 }
-#work-menu ul{
+#workMenu ul{
 	width: 100%;
 	height: 50%;
 	position: absolute;
 	bottom: 10%;
 }
-#work-menu ul li{
+#workMenu ul li{
 	height: 30%;
 	width: 100%;
 	position: relative;
@@ -276,19 +277,19 @@ ul{
 	margin-bottom: 3%;
 	text-align: center;
 }
-#work-menu ul li:last-child{
+#workMenu ul li:last-child{
 	margin-bottom: 0;
 }
-#work-menu ul li p{
+#workMenu ul li p{
 	display: none;
 }
-#work-menu ul li canvas{
+#workMenu ul li canvas{
 	height: 100%;
 	width: 100%;
 	padding: 0;
 	margin: 0;
 }
-#work-carousel{
+#workCarousel{
 	width: 60%;
 	height: 100%;
 	position: absolute;
@@ -312,31 +313,35 @@ ul{
 	height: auto;
 	margin-bottom: 5%;
 }
-.portfolio-thumbnail{
+.portfolioThumbnail{
 	max-width: 100%;
 }
-.portfolio-thumbnail img{
+.portfolioThumbnail img{
 	max-width: 100%;
 	height: 25%;
 	margin-bottom: 2%;
 	box-shadow: 0 10px 20px;
 }
-.portfolio-thumbnail img:hover{
+.portfolioThumbnail img:hover{
 	border: 3px solid white;
 }
-.portfolio-thumbnail h2{
+.portfolioThumbnail h2{
 	padding: 0 1%;
 }
-.portfolio-details{
+.portfolioDetails{
 	display: none;
 }
 /* CONTACT */
 #Contact{
 	position: relative;
-	background-color: green;
+	border-top: 2px solid sgreen;
 	z-index: 950;
 }
-#contact-card{
+#sawBGBottom{
+	bottom: 0;
+	transform: rotate(180deg);
+}
+#contactCard{
 	width: 100%;
 	height: 50%;
 	position: relative;
@@ -350,10 +355,10 @@ ul{
 		height: 100%;
 		position: fixed;
 		top: 0;
-		right: -60%;
+		left: 100%;
 		overflow: hidden;
 		display: block;
-		background-color: gray;
+		background-color: #000000;
 	}
 	#nav ul li{
 		width: 100%;
@@ -364,6 +369,8 @@ ul{
 	#nav ul p{
 		display: table-cell;
 		vertical-align: middle;
+		text-align: center;
+		background-color: gray;
 	}
 	#toggleNavMenu{
 		height: auto;
@@ -389,10 +396,10 @@ ul{
 	#About{
 		background-image: url('img/graph.png');
 	}
-	.border-canvas canvas{
+	.borderCanvas canvas{
 		display: none;
 	}
-	#about-head{
+	#aboutHead{
 		font-size: 14px;
 	}
 	#timeline{
@@ -401,57 +408,66 @@ ul{
 	#bio{
 		height: 40%;
 		width: 100%;
+		overflow-y: hidden;
 	}
 	#bio div:nth-child(1) , #bio div:nth-child(2){
 		width: 100%;
 		height: 50%;
 		left: 0;
 	}
-	#work-menu{
-		height: 10%;
-		width: 100%;
-		background-image: url('img/work-bg.png');
-		background-size: 50% 1000%;
-		background-position: top left;
-		position: absolute;
-		top: 0;
-
-		z-index: 950;
-	}
-	.saw-canvas{
+	.borderCanvas{
 		display: none;
 	}
-	#work-menu h3{
-		color: white;
-	}
-	#work-menu h3:nth-child(1), #work-menu h3:nth-child(2){
-		display: block;
-		height: 25%;
+	#workMenu{
+		height: 20%;
 		width: 100%;
 		position: absolute;
+		top: 0;
+		z-index: 950;
+		Padding: 0;
+	}
+	#workMenu div{
+		height: 50%;
+		width: 100%;
+		position: absolute;
+		top: 450%;
 		left: 0;
-		padding: 1.5% 0 0 0;
-		margin: 0;
-		transform: none;
-		font-size: 12px;
+		border-top: 2px solid black; border-bottom: 2px solid red;
+		background-color: black;
+		opacity: .7;
+	}
+	#workMenu h3{
+		width: 100%;
+		height: auto;
+		display: table-cell;
+		padding: 0;
+		color: white;
+		font-size: 10pt;	
+		position: absolute;
 		box-shadow: none;
-		opacity: .8;
+		opacity: .75;
 	}
-	#work-menu h3:nth-child(1){
-		bottom: -865%;
+	#workMenu h3:nth-child(1){
+		top: 10%;
+		transform: none;
+		margin: 0;
+		font-size: 10pt;
+		border-bottom: 2px solid black;
 	}
-	 #work-menu h3:nth-child(2){
-		bottom: -900%;
-		border-top: 1px solid #000000;
+	#workMenu h3:nth-child(2){
+		top: 51%;
+		transform: none;
+		margin: 0;	
+		font-size: 10pt;
 	}
-	#work-menu ul{
+	#workMenu ul{
 		height: 100%;
 		width: 80%;
 		position: absolute;
 		left: 20%;
 		top: 0;
 	}
-	#work-menu ul li{
+	#workMenu ul li{
 		width: 16%;
 		height: 50%;
 		display: inline-block;
@@ -462,24 +478,26 @@ ul{
 		color: #ffffff;
 		text-align: center;
 	}
-	#work-menu ul li p{
+	#workMenu ul li p{
 		height: auto;
 		width: auto;
 		padding: 7.5%;
 		display: block;
 		vertical-align: middle;
 	}
-	#work-menu ul li canvas{
+	#workMenu ul li canvas{
 		display: none;
 	}
-	#work-carousel{
-		height: 90%;
+	#workCarousel{
+		height: 80%;
 		width: 100%;
-		top: 10%;
+		top: 20%;
+		right: 0;
 		background-image: url('img/work-bg.png');
+		background-size: 100%;
 	}
 	.portfolio{
-		margin-bottom: 15%;
+		margin-bottom: 20%;
 		margin-top: 0%;
 	}
 }
