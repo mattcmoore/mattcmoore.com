@@ -102,6 +102,7 @@
 				<li><h1>I Create.</h1></li>
 			</ul>
 		<script>	
+			//centers nav content
 			$('#Landing').ready(function(){
 				var landingMargin = ($(window).width()-$('#Landing ul').outerWidth())/2;
 				$('#Landing ul').css('left',landingMargin);
@@ -167,88 +168,116 @@
 							};
 						});
 					});
-					// sets canvas width/height .attr to container width/height 
-					$('.workSaw').attr({'width':$('#workMenu').width(),'height':$('#workMenu ul li').height()});
+					// sets canvas width/height .attr to container width/height | make all canvas equal container height/width ??
+					$('#workMenu canvas').attr({'width':$('#workMenu').width(),'height':$('#workMenu ul li').height()});
 					$('#workMenu ul li canvas').each(function(){
 						var c = document.getElementById($(this)[0].id);
 						// IS IT BEST PRACTICE TO HANDLE SCOPE OF C VARIABLE BY PASSING IT AS AN ARGUMENT ???
 						createMenuSliders(c);
 					});
 					// menu bar canvases
-					function createMenuSliders(canvas){
+					function createMenuSliders(canvas,e){
 						var c = canvas;
 						var ctx = c.getContext("2d");
-						var x = $('#workMenu').width();
-						var y = $('#workMenu canvas').height();
-						function menuText(){
-							ctx.font = (y*0.45).toString()+'px '+'Sans-serif';
+						var x = $('#workMenu canvas').width();
+						var y = $('#workMenu canvas').height();				
+						function drawMenuText(){
+							ctx.font = (y*0.33).toString()+'px '+'Sans-serif';
 							ctx.textBaseline = 'bottom';
 							ctx.textAlign = 'right';
 							ctx.fillText($(c).siblings('p')[0].textContent,(x*.9),(y*0.475));
 						}
-						function drawMenuSawtooth(teeth){
-							var t = teeth * 2;
+						function drawMenuSawtooth(n){
+							var t = n * 2;
+							var r = Math.random().toFixed(1);
 							ctx.moveTo(0,(y/2)+10);
 							for(var i=1;i<t;i+=2){
 								ctx.lineTo((x/t)*i,y);
-								ctx.moveTo((x/t)*i,y);
+								ctx.moveTo((x/t)*i  ,y);
 								ctx.lineTo((x/t)*(i+1),(y/2)+10);
 								ctx.moveTo((x/t)*(i+1),(y/2)+10);
 							}				
 							ctx.lineWidth = 3;
 							ctx.stroke();
 						}
-						menuText();
-						drawMenuSawtooth(10);
-						ctx.translate(0,-10);
-						drawMenuSawtooth(10);
-					}
-/*
-					// fix if opened > 800 px
-					if($(window).width()<=800){
-							$('#workMenu').attr('title','1');
-					}
-*/
-					// sawBorders
-					$('.borderCanvas canvas').attr({'width':$(window).width(),'height':$('.borderCanvas').height()});
+						if(e=='clear'){
+							ctx.setTransform(1,0,0,1,0,0);
+							ctx.clearRect(0,0,x,y*2);	
+						}	
+							drawMenuText();
+							drawMenuSawtooth(10);
+							ctx.setTransform(1,0,0,1,0,-10);
+							drawMenuSawtooth(10);
+					} // end-createMenuSliders
+					
+					$('.borderCanvas canvas').attr({'width':$('.borderCanvas').width(),'height':$('.borderCanvas').height()});
+					$('.borderCanvas canvas').each(function(){
+						var c = document.getElementById($(this)[0].id);
+						// IS IT BEST PRACTICE TO HANDLE SCOPE OF C VARIABLE BY PASSING IT AS AN ARGUMENT ???
+						createSawBorder(c);
+					});
+					function createSawBorder(){
+						$('.borderCanvas canvas').attr({'width':$('.borderCanvas').width(),'height':$('.borderCanvas').height()});
 						var x = $('.borderCanvas canvas').width();
 						var y = $('.borderCanvas canvas').height();
-						var c = document.getElementById('sawCanvasTop');
-						var context = c.getContext("2d");
 						var img = document.createElement('img')
-						img.src = 'img/graph.png';
-						function drawSawBorder(context,teeth,height,bottom){					
+						function drawSawBorder(context,teeth,height,bottom){		
 							var ctx = context;
 							var t = teeth * 2;
 							var h = height;
 							var b = bottom;
+							$('.borderCanvas canvas').each(function(){
+							var c = document.getElementById($(this)[0].id);
+							var ctx = c.getContext("2d");
+							var x = $(window).width();
+							var y = $('.borderCanvas').height();
+							});
 							ctx.beginPath();
 							ctx.moveTo(0,0);
-							ctx.lineTo(0,y);							
+							ctx.lineTo(0,y);	
+							var count = 0; 
 							for(var i=1;i<t;i+=2){
-								ctx.lineTo((x/t)*i,h);
-								ctx.lineTo((x/t)*(i+1),y);
+								var r = Math.random().toFixed(1);
+								ctx.lineTo( ((x/t)*i),h-(r*10));
+								ctx.lineTo( ((x/t)*(1+i)),y-(r*30));						
 							}			
 							ctx.lineTo(x,0);
-							ctx.lineWidth = 4;
+							ctx.lineWidth = 1;
+							ctx.stroke();
+								ctx.shadowBlur = 100;
+    							ctx.shadowColor = 'black';
+    							ctx.shadowOffsetX = 0;
+    							ctx.shadowOffsetY = -20;
 							ctx.closePath();
-							ctx.clip();
-/*							ctx.shadowOffsetX = 0;
-						    ctx.shadowOffsetY = 0;
-  							ctx.shadowBlur = 10;
-  							ctx.shadowColor = "black";
- */							
+							ctx.clip();	
 						}
+						// see if you can reduce here
+						var c = document.getElementById('sawCanvasTop');
+						var context = c.getContext("2d");
+						//img.src = 'img/graph.png';
 						drawSawBorder(context,20,y*.95,y*.05);
 						context.drawImage(img,0,0,x,y);
 						var c = document.getElementById('sawCanvasBottom');
 						var context = c.getContext('2d');
-						var img = document.createElement('img')
-						img.src = 'img/graph.png';
-						context.strokeStyle = "#000000";
+						img.src = 'img/halftone.png';
+						console.log(img);
 						drawSawBorder(context,20,y*.95,y*.05);
-						context.fillStyle = "green";
-						context.fillRect(0,0,x,y);
+						//context.drawImage(img,0,0,x,y);
+						var ptrn = context.createPattern(img, 'repeat'); // Create a pattern with this image, and set it to "repeat".
+    					context.fillStyle = ptrn;
+    					context.fillRect(0, 0,x,y); // context.fillRect(x, y, width, height);
+					}
+					$(window).resize(function(){
+						// if window.width < 800 {clear both, 'title' = 1}
+						// if window.width > 800 && 'title' == 1 {draw both, 'title' = 0}
+						// if window.width > 800 && 'title' == 0 {resize both w/ requestAnimationFrame(draw)}
+						if($(window).width()>800){
+							$('#workMenu ul li canvas').each(function(){
+								var c = document.getElementById($(this)[0].id);
+								// IS IT BEST PRACTICE TO HANDLE SCOPE OF C VARIABLE BY PASSING IT AS AN ARGUMENT ???
+							});
+						}
+					});
 				});
 			</script>
 			<div id='workCarousel'>
@@ -259,7 +288,7 @@
 							<h2>Pitchdeck For Alumnify (2013)</h2>
 						</div>
 						<div class='portfolioDetails'>
-							<p>I made this pitchdeck for Alumnify in Photoshop while they were raising a second round of seed funding during 2013. Alumnify accepted their invitation to ?? startup accelerator a few weeks later.</p>
+							<p>I made this pitchdeck for Alumnify in Photoshop while they were raising a second round of seed funding during 2013. Alumnify accepted their invitation to firedUP startup accelerator a few weeks later.</p>
 							<ul>
 								<li><img src='img/portfolio/alumnify_pitchdeck_1.jpg' alt='alumnify_pitchdeck_1'>
 								<li><img src='img/portfolio/alumnify_pitchdeck_2.jpg' alt='alumnify_pitchdeck_2'>
@@ -344,6 +373,20 @@
 </html>	
 
 <!--
-		-
-
+	Stuff To Do 3/15
+	
+	-Create glitch bg for #Landing
+	-animated #nav button
+	-#popup button
+	-Fade in/out #Landing text and #nav
+	-Create timeline (canvas)***
+	-Create resume link
+	-#bio auto fit text (...more link)
+	-#bio "contine" text  (desktop and < 800px)
+	-Fix #Work resizing when initial screen < 800px 
+	-Create mobile menu saw canvas
+	-Add inner stroke and box shadow to borderSaws
+	-Add shadow to menu saws
+	-Fix menu saw text (misaligned, sizes incorrectely when size ++) 
+	-Restore old #Contact section
 -->

@@ -1,0 +1,18 @@
+X/36 = monthly payment
+1.0199916666667 * (x/36) = x - 1200
+
+x - y*6 = 4800
+y = monthly payments
+total monthly payments t=0 -> t=6 = (x/36)*6 + (x*.02)+(35/36x*.02)+(34/36x*.02)+(33/36x*.02)+(32/36x*.02)+(31/36x*.02)
+
+x - (x/6 + (x*.02)+(35/36x*.02)+(34/36x*.02)+(33/36x*.02)+(32/36x*.02)+(31/36x*.02) ) = 4800
+x - (x/6 + ((201/36x)*.0199916666667) + .05x) = 4800 
+x - (amoritized_principal + (interest_on_remaining_balance) + origination_fee) = 4800 
+x
+x - (x/6)
+
+
+260 * 6
+
+6300
+

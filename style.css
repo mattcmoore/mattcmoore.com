@@ -115,7 +115,10 @@ ul{
 }
 /* LANDING */
 #Landing{
-	background-color: red;
+	background-image: url('img/daffydesert.gif');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: contain;
 	position: relative;
 }
 #Landing ul{
@@ -191,7 +194,11 @@ ul{
 }
 #bio div:nth-child(1){
 	width: 60%;
-/*	background-color: lightblue; */
+/*	back
+
+
+
+round-color: lightblue; */
 }
 #bio div:nth-child(2){
 	left: 60%;
@@ -234,6 +241,7 @@ ul{
 	top: 0;
 	left: 0;
 	perspective: 900px;
+	z-index: 950;
 }
 #workMenu div{
 	height: 35%;
@@ -335,7 +343,6 @@ ul{
 #Contact{
 	position: relative;
 	border-top: 2px solid sgreen;
-	z-index: 950;
 }
 #sawBGBottom{
 	bottom: 0;
@@ -343,11 +350,24 @@ ul{
 }
 #contactCard{
 	width: 100%;
-	height: 50%;
-	position: relative;
+	height: 45%;
+	position: absolute;
 	top: 10%;
-	background-color: lightgreen;
-	z-index: inherit;
+	margin-bottom: 5%;
+	border-top: 1px solid darkgreen; border-bottom: 1px solid darkgreen;
+	z-index: 950;
+}
+#hollywoodSign{
+	width: 100%;
+	height: 40%;
+	position: absolute;
+	bottom: 0;
+	background-image: url('img/hollywood.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: .95; 
+	z-index: 975;
+
 }
 @media (max-width: 800px){
 	#nav ul{		
@@ -423,8 +443,7 @@ ul{
 		width: 100%;
 		position: absolute;
 		top: 0;
-		z-index: 950;
-		Padding: 0;
+		padding: 0;
 	}
 	#workMenu div{
 		height: 50%;
@@ -434,7 +453,7 @@ ul{
 		left: 0;
 		border-top: 2px solid black; border-bottom: 2px solid red;
 		background-color: black;
-		opacity: .7;
+		opacity: .77;
 	}
 	#workMenu h3{
 		width: 100%;
@@ -445,7 +464,7 @@ ul{
 		font-size: 10pt;	
 		position: absolute;
 		box-shadow: none;
-		opacity: .75;
+		opacity: 1;
 	}
 	#workMenu h3:nth-child(1){
 		top: 10%;
@@ -493,7 +512,6 @@ ul{
 		width: 100%;
 		top: 20%;
 		right: 0;
-		background-image: url('img/work-bg.png');
 		background-size: 100%;
 	}
 	.portfolio{
